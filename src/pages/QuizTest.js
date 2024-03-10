@@ -82,25 +82,25 @@ function QuizTest() {
               </Button>
             ))}
             <Button onClick={goToNextQuestion}>
-              {currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next'}
+              {currentQuestionIndex === questions.length - 1 ? 'Fertig' : 'Nechst'}
             </Button>
           </>
         ) : (
           <>
-            <Card.Title>Quiz Completed</Card.Title>
-            <Card.Text>Your score is {calculateScore()} out of {questions.length}</Card.Text>
+            <Card.Title>Der Quiz-Test ist Fertig</Card.Title>
+            <Card.Text>Dein score ist: {calculateScore()} von {questions.length}</Card.Text>
             <Button onClick={restartQuiz}>Restart Quiz</Button>
-            <Button onClick={() => setShowResults(!showResults)}>Show Results</Button>
+            <Button onClick={() => setShowResults(!showResults)}>Ergebnisse</Button>
             {showResults && (
               <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                  <Accordion.Header>Quiz Answers</Accordion.Header>
+                  <Accordion.Header>Quiz Antworten</Accordion.Header>
                   <Accordion.Body>
                     {Object.entries(userAnswers).map(([questionIndex, answer], index) => (
                       <p key={index}>
-                        Q{parseInt(questionIndex) + 1}: {questions[questionIndex].text} - 
-                        Your Answer: {answer.text} - 
-                        {answer.correct ? " Correct" : " Wrong"}
+                        Frage {parseInt(questionIndex) + 1}: {questions[questionIndex].text} - 
+                        Deine Antwort: {answer.text} - 
+                        {answer.correct ? " Richtig! :)" : " Falsch! :("}
                       </p>
                     ))}
                   </Accordion.Body>

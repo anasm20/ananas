@@ -6,8 +6,7 @@ function Home() {
     <div className="home-page">
       <h1>Willkommen zum AI und Cloud Computing Lernportal</h1>
       <p>Bereit, mehr über künstliche Intelligenz und Cloud Computing zu lernen?</p>
-      <Link to="/learning">Starte das Lernen</Link>
-      <Link to="/quiz">Teste dein Wissen</Link>
+      <Link to="/quiz-test">Teste dein Wissen</Link>
     </div>
   );
 }
