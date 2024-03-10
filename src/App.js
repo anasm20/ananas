@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
-import QuizTest from './pages/QuizTest';
+import QuizTest from './pages/QuizTest-old';
 import HomePage from './pages/HomePage'; // Stellen Sie sicher, dass der Pfad korrekt ist
 
 function App() {

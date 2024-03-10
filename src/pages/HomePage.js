@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 
 function HomePage() {
+  const [activeKey, setActiveKey] = useState('0');
+
+  const handleSelect = (eventKey) => {
+    setActiveKey(activeKey === eventKey ? null : eventKey);
+  };
+
   return (
     <div className="home-container">
       <h1>Willkommen zu unserem Lernportal über AI und Cloud Computing</h1>
-      <Accordion defaultActiveKey="0">
+      <Accordion activeKey={activeKey} onSelect={handleSelect}>
         <Card>
           <Accordion.Header eventKey="0">
             Was ist künstliche Intelligenz (KI)?
