@@ -1,3 +1,12 @@
+## Before running, you must install:
+npm install react-icons
+
+![Screenshot 2024-03-11 at 00 14 03](https://github.com/anasm20/ananas/assets/112882511/4a03286c-7127-4d78-b9ca-158879190572)
+![Screenshot 2024-03-11 at 00 13 51](https://github.com/anasm20/ananas/assets/112882511/f265d058-8353-4c92-85c3-4de7c2f56bb7)
+![Screenshot 2024-03-11 at 00 14 34](https://github.com/anasm20/ananas/assets/112882511/72d16c76-d110-4020-bca9-240a6bd1899e)
+![Screenshot 2024-03-11 at 00 14 18](https://github.com/anasm20/ananas/assets/112882511/eaada14c-14a9-4dc7-8b1d-c51259982af0)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
