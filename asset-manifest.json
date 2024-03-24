@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ananas/static/css/main.6c9173e7.css",
+    "main.js": "/ananas/static/js/main.5268af69.js",
+    "static/js/453.d116ed67.chunk.js": "/ananas/static/js/453.d116ed67.chunk.js",
+    "static/media/logo.png": "/ananas/static/media/logo.03240962cda328299f35.png",
+    "index.html": "/ananas/index.html",
+    "main.6c9173e7.css.map": "/ananas/static/css/main.6c9173e7.css.map",
+    "main.5268af69.js.map": "/ananas/static/js/main.5268af69.js.map",
+    "453.d116ed67.chunk.js.map": "/ananas/static/js/453.d116ed67.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c9173e7.css",
+    "static/js/main.5268af69.js"
+  ]
+}
