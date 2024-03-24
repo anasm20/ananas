@@ -1,4 +1,4 @@
-.quiz-container {
+/* .quiz-container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -6,7 +6,9 @@
     border-radius: 0.25rem;
     background: #f8f9fa;
   }
-  
+   */
+
+   
   .question-count {
     margin-bottom: 20px;
   }
@@ -33,7 +35,7 @@
   ‚
 
   .quiz-card {
-    max-width: 800px;
+    max-width: 300px;
     margin: auto; 
     flex-direction: column;
     display: flex; 

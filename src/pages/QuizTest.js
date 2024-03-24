@@ -107,10 +107,11 @@ function QuizTest() {
   };
 
   return (
-    <Card className="quiz-card">
+    <Card style={{maxWidth: '900px', margin: 'auto', flexDirection: 'column', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    {/* <Card className="quiz-card"> */}
       <Card.Body>
         {!quizStarted ? (
-          <div style={{ textAlign: 'center' }}>
+          <div style={{textAlign: 'center'}}>
             <Form.Group>
               <Form.Label>Bitte gib deinen Namen ein:</Form.Label>
               <Form.Control 
@@ -125,7 +126,7 @@ function QuizTest() {
         ) : !quizEnd ? (
           <>
             <ProgressBar now={(currentQuestionIndex / questions.length) * 100} />
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <div style={{textAlign: 'center', marginBottom: '20px'}}>
               <p>Hallo, {userName}!</p>
               <p>Frage {currentQuestionIndex + 1} von {questions.length}</p>
               <Card.Title>{question.text}</Card.Title>
@@ -144,16 +145,16 @@ function QuizTest() {
               ))}
             </Form>
             {showWarning && <Alert variant="danger">Bitte wähle eine Antwort aus.</Alert>}
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <div style={{textAlign: 'center', marginTop: '20px'}}>
               <Button onClick={goToNextQuestion}>Nächste Frage</Button>
             </div>
           </>
         ) : (
           <>
-            <Card.Title style={{ textAlign: 'center' }}>Super "{userName}" deine Quiz-Test ist Fertig!</Card.Title>
-            <Card.Text style={{ textAlign: 'center' }}>Dein Score ist: {calculateScore().toFixed(2)}%</Card.Text>
-            <Card.Text style={{ textAlign: 'center' }}>Deine Beste Rekord ist: {bestScore.toFixed(2)}%</Card.Text>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <Card.Title style={{textAlign: 'center'}}>Super "{userName}" deine Quiz-Test ist Fertig!</Card.Title>
+            <Card.Text style={{textAlign: 'center'}}>Dein Score ist: {calculateScore().toFixed(2)}%</Card.Text>
+            <Card.Text style={{textAlign: 'center'}}>Deine Beste Rekord ist: {bestScore.toFixed(2)}%</Card.Text>
+            <div style={{textAlign: 'center', marginBottom: '20px'}}>
               <Button onClick={restartQuiz}>Neustart</Button>
               <Button onClick={() => setShowResults(!showResults)}>Ergebnisse</Button>
             </div>
@@ -184,6 +185,7 @@ function QuizTest() {
       </Card.Body>
     </Card>
   );
+  
   
 }
 
