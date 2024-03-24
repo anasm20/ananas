@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import QuizTest from './pages/QuizTest';
-import HomePage from './pages/HomePage-old'; // Stellen Sie sicher, dass der Pfad korrekt ist
+import HomePage from './pages/HomePage'; // Stellen Sie sicher, dass der Pfad korrekt ist
 
 function App() {
   return (
