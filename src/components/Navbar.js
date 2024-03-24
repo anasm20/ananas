@@ -7,12 +7,12 @@ function NavigationBar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/quiz-test">
           <img
             src={logo}
-            width="50" // Passen Sie die Breite nach Ihren Bedürfnissen an
-            height="60" // Passen Sie die Höhe nach Ihren Bedürfnissen an
-            className="d-inline-block align-top" // Dies hilft, das Logo vertikal mit dem Text auszurichten, falls Sie neben dem Logo auch Text haben möchten
+            width="50" 
+            height="60" 
+            className="d-inline-block align-top" 
             alt="Ananas Logo"
           />
         </Navbar.Brand>
