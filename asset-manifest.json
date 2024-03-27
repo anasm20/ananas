@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ananas/static/css/main.6c9173e7.css",
-    "main.js": "/ananas/static/js/main.b36c3084.js",
+    "main.css": "/ananas/static/css/main.024dc3c3.css",
+    "main.js": "/ananas/static/js/main.5f8e5257.js",
     "static/js/453.d116ed67.chunk.js": "/ananas/static/js/453.d116ed67.chunk.js",
     "static/media/logo.png": "/ananas/static/media/logo.03240962cda328299f35.png",
     "index.html": "/ananas/index.html",
-    "main.6c9173e7.css.map": "/ananas/static/css/main.6c9173e7.css.map",
-    "main.b36c3084.js.map": "/ananas/static/js/main.b36c3084.js.map",
+    "main.024dc3c3.css.map": "/ananas/static/css/main.024dc3c3.css.map",
+    "main.5f8e5257.js.map": "/ananas/static/js/main.5f8e5257.js.map",
     "453.d116ed67.chunk.js.map": "/ananas/static/js/453.d116ed67.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c9173e7.css",
-    "static/js/main.b36c3084.js"
+    "static/css/main.024dc3c3.css",
+    "static/js/main.5f8e5257.js"
   ]
 }
