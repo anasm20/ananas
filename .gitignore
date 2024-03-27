@@ -23,10 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # old pages
-.QuizTest-old.js
-.QuizTest-old2.js
-.QuizTest-old3.js
-.QuizTest-old4.js
-.QuizTest-old5.js
+QuizTest-old.js
+QuizTest-old2.js
+QuizTest-old3.js
+QuizTest-old4.js
+QuizTest-old5.js
 
 Information-old.js
