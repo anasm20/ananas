@@ -1,78 +1,43 @@
-import React, { useState } from 'react';
-import { Accordion, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+// HomePage.js
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import Card from '../components/Card';
+import gameImage from '../img/logo.png'; // Beispielbild für Spiele
+import puzzleImage from '../img/logo.png'; // Beispielbild für Rätsel
+import quizImage from '../img/logo.png'; // Beispielbild für Quiz
 
-function HomePage() {
-  const [activeKey, setActiveKey] = useState('0');
-  const navigate = useNavigate();
-
-  const handleSelect = (eventKey) => {
-    setActiveKey(activeKey === eventKey ? null : eventKey);
-  };
-
-  const startQuiz = () => {
-    navigate('/quiz-test');
-  };
-
+const HomePage = () => {
   return (
-    <div className="home-container">
-      <h1>Willkommen zu Ananas-Lernportal über AI und Cloud Computing</h1>
-      <Accordion activeKey={activeKey} onSelect={handleSelect}>
-        {/* Vorhandene Items */}
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            Was ist künstliche Intelligenz (KI)?
-          </Accordion.Header>
-          <Accordion.Body>
-            Künstliche Intelligenz ist ein Bereich der Informatik, der sich damit beschäftigt, Maschinen die Fähigkeit zu geben, intelligentes Verhalten zu zeigen.
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>
-            Was ist Cloud Computing?
-          </Accordion.Header>
-          <Accordion.Body>
-            Cloud Computing bezeichnet die Bereitstellung von IT-Infrastruktur und Rechenleistung über das Internet, wobei Nutzer auf Ressourcen zugreifen können, ohne diese physisch vor Ort haben zu müssen.
-          </Accordion.Body>
-        </Accordion.Item>
-        {/* Neue Items */}
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>
-            Wie funktioniert maschinelles Lernen?
-          </Accordion.Header>
-          <Accordion.Body>
-            Maschinelles Lernen ist ein Teilbereich der KI, der es Computern ermöglicht, aus Daten zu lernen und Entscheidungen zu treffen oder Vorhersagen zu treffen, ohne explizit programmiert zu werden.
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="3">
-          <Accordion.Header>
-            Was ist ein Neuronales Netzwerk?
-          </Accordion.Header>
-          <Accordion.Body>
-            Neuronale Netzwerke sind computergestützte Modelle, die von der Arbeitsweise menschlicher Gehirne inspiriert sind und aus Schichten von Knoten oder "Neuronen" bestehen, die komplexe Muster in Daten erkennen können.
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="4">
-          <Accordion.Header>
-            Vorteile von Cloud-Speicher
-          </Accordion.Header>
-          <Accordion.Body>
-            Cloud-Speicher bietet Skalierbarkeit, Flexibilität und Kosteneffizienz, da Unternehmen nur für den Speicherplatz zahlen, den sie tatsächlich nutzen, und den Speicher bei Bedarf erweitern können.
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="5">
-          <Accordion.Header>
-            Was sind Cloud-Services?
-          </Accordion.Header>
-          <Accordion.Body>
-            Cloud-Services sind Dienste, die über das Internet bereitgestellt werden und reichen von Software- und Plattformdiensten bis hin zu Infrastrukturlösungen, die herkömmliche On-Premise-Systeme ersetzen oder ergänzen.
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+    <div className="container mt-5">
+      <h2>Willkommen zu Ananas-Lernportal über AI und Cloud Computing</h2>
+      <div className="row">
+        {/* Verwende die Card-Komponente für die Wiederholungen */}
+        <Card title="Lernen" buttonText="JETZT STARTEN" link="/information" image={gameImage} />
+        <Card title="Flipp-Card" buttonText="JETZT STARTEN" link="/flipp-card" image={puzzleImage} />
+        <Card title="Quiz" buttonText="JETZT STARTEN" link="/quiz-test" image={quizImage} />
+        {/* Weitere Karten hier hinzufügen */}
+      </div>
 
-      <Button onClick={startQuiz} className="mt-3">Quiz Test Anfangen</Button>
+      <div className="accordion my-5" id="faqAccordion">
+        <div className="card">
+          <div className="card-header" id="headingOne">
+            <h2 className="mb-0">
+              <button className="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Wie lange dauert das Quiz?
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+            <div className="card-body">
+              Die Dauer des Quizzes kann variieren...
+            </div>
+          </div>
+        </div>
+        {/* Weitere FAQ-Akkordeon-Einträge hier hinzufügen */}
+      </div>
     </div>
   );
-}
+};
 
 export default HomePage;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import logo from '../img/logo.png'; // Stellen Sie sicher, dass dieser Pfad zu Ihrem Logo passt
+import logo from '../img/logo.png';
 
 function NavigationBar() {
   return (
@@ -20,9 +20,11 @@ function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
-            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+            <Nav.Link as={Link} to="/information">Information</Nav.Link>
+            <Nav.Link as={Link} to="/flipp-card">Flipp-Card</Nav.Link>
+            <Nav.Link as={Link} to="/leaderboard">Leaderboard</Nav.Link>
             <Nav.Link as={Link} to="/quiz-test">Quiz Test</Nav.Link>
+            <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

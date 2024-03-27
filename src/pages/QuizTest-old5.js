@@ -1,38 +1,40 @@
+// QuizTest.js
 import React, { useState, useEffect } from 'react';
 import { Button, Card, ProgressBar, Accordion, Form, Alert } from 'react-bootstrap';
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs';
 import { saveData, loadData } from '../components/localStorageService'; 
+// import QuizAdmin from './QuizAdmin';
 import '../styles/Quiz.css';
 
-const questions = [
-    // Vorhandene Fragen
-    {
-      text: "Was ist die Hauptstadt von Australien?",
-      options: [
-        { id: 0, text: "Sydney" },
-        { id: 1, text: "Canberra", correct: true },
-        { id: 2, text: "Melbourne" },
-      ],
-    },
-    // Hinzugefügte Fragen
-    {
-      text: "Welches Modell wird für die Verarbeitung natürlicher Sprache in der KI verwendet?",
-      options: [
-        { id: 0, text: "Convolutional Neural Network" },
-        { id: 1, text: "Recurrent Neural Network", correct: true },
-        { id: 2, text: "Random Forest" },
-      ],
-    },
-    {
-      text: "Was ist eine Cloud-Datenbank?",
-      options: [
-        { id: 0, text: "Eine Datenbank, die lokal auf einem Server gespeichert ist" },
-        { id: 1, text: "Eine Datenbank, die auf Cloud-Infrastruktur-Services ausgeführt wird", correct: true },
-        { id: 2, text: "Eine Datenbank, die nur temporäre Daten speichert" },
-      ],
-    },
-    // Weitere Fragen hier hinzufügen
-  ];
+const initialQuestions = [
+  // Vorhandene Fragen
+  {
+    text: "Was ist die Hauptstadt von Australien?",
+    options: [
+      { id: 0, text: "Sydney" },
+      { id: 1, text: "Canberra", correct: true },
+      { id: 2, text: "Melbourne" },
+    ],
+  },
+  // Hinzugefügte Fragen
+  {
+    text: "Welches Modell wird für die Verarbeitung natürlicher Sprache in der KI verwendet?",
+    options: [
+      { id: 0, text: "Convolutional Neural Network" },
+      { id: 1, text: "Recurrent Neural Network", correct: true },
+      { id: 2, text: "Random Forest" },
+    ],
+  },
+  {
+    text: "Was ist eine Cloud-Datenbank?",
+    options: [
+      { id: 0, text: "Eine Datenbank, die lokal auf einem Server gespeichert ist" },
+      { id: 1, text: "Eine Datenbank, die auf Cloud-Infrastruktur-Services ausgeführt wird", correct: true },
+      { id: 2, text: "Eine Datenbank, die nur temporäre Daten speichert" },
+    ],
+  },
+  // Weitere Fragen hier hinzufügen
+];
 
 function QuizTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -43,6 +45,7 @@ function QuizTest() {
   const [userName, setUserName] = useState('');
   const [quizStarted, setQuizStarted] = useState(false);
   const [bestScore, setBestScore] = useState(0);
+  const [questions, setQuestions] = useState(initialQuestions);
 
   useEffect(() => {
     // Versucht, den besten Score und den Benutzernamen beim Laden zu laden
@@ -108,6 +111,11 @@ function QuizTest() {
       }
     });
     return (score / questions.length) * 100;
+  };
+
+  const handleSaveQuestion = (newQuestion) => {
+    setQuestions([...questions, newQuestion]);
+    saveData('questions', JSON.stringify([...questions, newQuestion])); // Hier werden die neuen Fragen gespeichert
   };
 
   return (
@@ -183,11 +191,14 @@ function QuizTest() {
                 </Accordion.Item>
               </Accordion>
             )}
+            {/* <QuizAdmin onSaveQuestion={handleSaveQuestion} /> */}
           </>
         )}
       </Card.Body>
     </Card>
-  );  
+  );
+  
+
 }
 
 export default QuizTest;

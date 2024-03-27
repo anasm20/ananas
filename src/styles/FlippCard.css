@@ -1,0 +1,41 @@
+/* Basic styling for the card */
+.Flipp-card {
+    perspective: 1000px;
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    position: relative;
+}
+
+.Flipp-card .Flipp-card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1e00ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.6s ease;
+}
+
+.Flipp-card .Flipp-card-front {
+    background-color: #fff;
+}
+
+.Flipp-card .Flipp-card-back {
+    background-color: #a3e2f1;
+    transform: rotateY(180deg);
+}
+
+/* Add the flip effect on click */
+.Flipp-card.is-flipped .Flipp-card-front {
+    transform: rotateY(180deg);
+}
+
+.Flipp-card.is-flipped .Flipp-card-back {
+    transform: rotateY(360deg);
+}

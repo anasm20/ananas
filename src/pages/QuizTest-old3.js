@@ -1,38 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, ProgressBar, Accordion, Form, Alert } from 'react-bootstrap';
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs';
-import { saveData, loadData } from '../components/localStorageService'; 
 import '../styles/Quiz.css';
 
 const questions = [
-    // Vorhandene Fragen
-    {
-      text: "Was ist die Hauptstadt von Australien?",
-      options: [
-        { id: 0, text: "Sydney" },
-        { id: 1, text: "Canberra", correct: true },
-        { id: 2, text: "Melbourne" },
-      ],
-    },
-    // Hinzugefügte Fragen
-    {
-      text: "Welches Modell wird für die Verarbeitung natürlicher Sprache in der KI verwendet?",
-      options: [
-        { id: 0, text: "Convolutional Neural Network" },
-        { id: 1, text: "Recurrent Neural Network", correct: true },
-        { id: 2, text: "Random Forest" },
-      ],
-    },
-    {
-      text: "Was ist eine Cloud-Datenbank?",
-      options: [
-        { id: 0, text: "Eine Datenbank, die lokal auf einem Server gespeichert ist" },
-        { id: 1, text: "Eine Datenbank, die auf Cloud-Infrastruktur-Services ausgeführt wird", correct: true },
-        { id: 2, text: "Eine Datenbank, die nur temporäre Daten speichert" },
-      ],
-    },
-    // Weitere Fragen hier hinzufügen
-  ];
+  // Vorhandene Fragen
+  {
+    text: "Was ist die Hauptstadt von Australien?",
+    options: [
+      { id: 0, text: "Sydney" },
+      { id: 1, text: "Canberra", correct: true },
+      { id: 2, text: "Melbourne" },
+    ],
+  },
+  // Hinzugefügte Fragen
+  {
+    text: "Welches Modell wird für die Verarbeitung natürlicher Sprache in der KI verwendet?",
+    options: [
+      { id: 0, text: "Convolutional Neural Network" },
+      { id: 1, text: "Recurrent Neural Network", correct: true },
+      { id: 2, text: "Random Forest" },
+    ],
+  },
+  {
+    text: "Was ist eine Cloud-Datenbank?",
+    options: [
+      { id: 0, text: "Eine Datenbank, die lokal auf einem Server gespeichert ist" },
+      { id: 1, text: "Eine Datenbank, die auf Cloud-Infrastruktur-Services ausgeführt wird", correct: true },
+      { id: 2, text: "Eine Datenbank, die nur temporäre Daten speichert" },
+    ],
+  },
+  // Weitere Fragen hier hinzufügen
+];
 
 function QuizTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -45,14 +44,17 @@ function QuizTest() {
   const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
-    // Versucht, den besten Score und den Benutzernamen beim Laden zu laden
-    const storedBestScore = loadData(`bestScore_${userName}`);
-    if (storedBestScore) setBestScore(parseFloat(storedBestScore));
-  }, [userName]);
+    const storedBestScore = localStorage.getItem('bestScore');
+    if (storedBestScore) {
+      setBestScore(parseFloat(storedBestScore));
+    }
+  }, []);
+
+  const question = questions[currentQuestionIndex];
 
   const handleAnswer = (optionId) => {
     setUserAnswers({ ...userAnswers, [currentQuestionIndex]: optionId });
-    setShowWarning(false);
+    setShowWarning(false); // Hide warning after selecting an answer
   };
 
   const startQuiz = () => {
@@ -65,7 +67,7 @@ function QuizTest() {
 
   const goToNextQuestion = () => {
     if (userAnswers[currentQuestionIndex] === undefined) {
-      setShowWarning(true);
+      setShowWarning(true); // Show warning if no answer selected
       return;
     }
 
@@ -73,32 +75,26 @@ function QuizTest() {
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
     } else {
-      finishQuiz();
-    }
-  };
-
-  const finishQuiz = () => {
-    setQuizEnd(true);
-    const score = calculateScore();
-    const storedBestScore = loadData(`bestScore_${userName}`);
-    // Update best score if current score is higher
-    if (!storedBestScore || score > parseFloat(storedBestScore)) {
-      setBestScore(score);
-      saveData(`bestScore_${userName}`, score.toString());
+      setQuizEnd(true);
+      const score = calculateScore();
+      if (score > bestScore) {
+        setBestScore(score);
+        localStorage.setItem('bestScore', score.toString());
+      }
     }
   };
 
   const restartQuiz = () => {
-    // Resets the quiz to initial state
     setUserAnswers({});
     setCurrentQuestionIndex(0);
     setQuizEnd(false);
     setShowResults(false);
     setShowWarning(false);
+    setQuizStarted(false);
+    setUserName('');
   };
 
   const calculateScore = () => {
-    // Berechnet den Gesamtpunktestand
     let score = 0;
     Object.entries(userAnswers).forEach(([questionIndex, selectedOptionId]) => {
       const question = questions[questionIndex];
@@ -107,20 +103,21 @@ function QuizTest() {
         score++;
       }
     });
-    return (score / questions.length) * 100;
+    return (score / questions.length) * 100; // Calculate score percentage
   };
 
   return (
-    <Card style={{ maxWidth: '900px', margin: 'auto', flexDirection: 'column', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Card style={{maxWidth: '900px', margin: 'auto', flexDirection: 'column', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    {/* <Card className="quiz-card"> */}
       <Card.Body>
         {!quizStarted ? (
-          <div style={{ textAlign: 'center' }}>
+          <div style={{textAlign: 'center'}}>
             <Form.Group>
               <Form.Label>Bitte gib deinen Namen ein:</Form.Label>
-              <Form.Control
-                type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+              <Form.Control 
+                type="text" 
+                value={userName} 
+                onChange={(e) => setUserName(e.target.value)} 
               />
             </Form.Group>
             {showWarning && <Alert variant="danger">Bitte gib deinen Namen ein.</Alert>}
@@ -129,13 +126,13 @@ function QuizTest() {
         ) : !quizEnd ? (
           <>
             <ProgressBar now={(currentQuestionIndex / questions.length) * 100} />
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <div style={{textAlign: 'center', marginBottom: '20px'}}>
               <p>Hallo, {userName}!</p>
               <p>Frage {currentQuestionIndex + 1} von {questions.length}</p>
-              <Card.Title>{questions[currentQuestionIndex].text}</Card.Title>
+              <Card.Title>{question.text}</Card.Title>
             </div>
             <Form>
-              {questions[currentQuestionIndex].options.map((option) => (
+              {question.options.map((option) => (
                 <Form.Check
                   key={option.id}
                   type="radio"
@@ -148,16 +145,16 @@ function QuizTest() {
               ))}
             </Form>
             {showWarning && <Alert variant="danger">Bitte wähle eine Antwort aus.</Alert>}
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <div style={{textAlign: 'center', marginTop: '20px'}}>
               <Button onClick={goToNextQuestion}>Nächste Frage</Button>
             </div>
           </>
         ) : (
           <>
-            <Card.Title style={{ textAlign: 'center' }}>Super "{userName}" deine Quiz-Test ist Fertig!</Card.Title>
-            <Card.Text style={{ textAlign: 'center' }}>Dein Score ist: {calculateScore().toFixed(2)}%</Card.Text>
-            <Card.Text style={{ textAlign: 'center' }}>Deine Beste Rekord ist: {bestScore.toFixed(2)}%</Card.Text>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <Card.Title style={{textAlign: 'center'}}>Super "{userName}" deine Quiz-Test ist Fertig!</Card.Title>
+            <Card.Text style={{textAlign: 'center'}}>Dein Score ist: {calculateScore().toFixed(2)}%</Card.Text>
+            <Card.Text style={{textAlign: 'center'}}>Deine Beste Rekord ist: {bestScore.toFixed(2)}%</Card.Text>
+            <div style={{textAlign: 'center', marginBottom: '20px'}}>
               <Button onClick={restartQuiz}>Neustart</Button>
               <Button onClick={() => setShowResults(!showResults)}>Ergebnisse</Button>
             </div>
@@ -172,8 +169,8 @@ function QuizTest() {
                       return (
                         <div key={index}>
                           <p>
-                            Frage {index + 1}: {question.text} -
-                            Deine Antwort: {selectedOption ? selectedOption.text : 'Keine Antwort ausgewählt'} -
+                            Frage {index + 1}: {question.text} - 
+                            Deine Antwort: {selectedOption ? selectedOption.text : 'Keine Antwort ausgewählt'} - 
                             {selectedOption && selectedOption.correct ? <BsCheckCircle color="green" /> : <BsXCircle color="red" />}
                           </p>
                         </div>
@@ -187,7 +184,9 @@ function QuizTest() {
         )}
       </Card.Body>
     </Card>
-  );  
+  );
+  
+  
 }
 
 export default QuizTest;
